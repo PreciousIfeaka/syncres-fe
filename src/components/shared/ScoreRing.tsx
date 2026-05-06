@@ -29,7 +29,7 @@ export function ScoreRing({ score, size = 'md', className }: ScoreRingProps) {
   };
 
   return (
-    <div className={cn("relative flex items-center justify-center", sizeClasses[size], className)} aria-label={`Match score: ${score} out of 100`}>
+    <div className={cn("relative flex items-center justify-center", sizeClasses[size], className)} aria-label={`Match score: ${score}%`}>
       <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
         <circle
           className="text-gray-100 stroke-current"
@@ -52,9 +52,8 @@ export function ScoreRing({ score, size = 'md', className }: ScoreRingProps) {
           transition={{ duration: 1.5, ease: "easeInOut" }}
         />
       </svg>
-      <div className="absolute flex flex-col items-center justify-center text-center">
-        <span className={cn("font-semibold text-blue-950", textClasses[size])}>{score}</span>
-        {size !== 'sm' && <span className="text-sm text-gray-500">/100</span>}
+      <div className="absolute flex items-center justify-center text-center">
+        <span className={cn("font-semibold text-blue-950", textClasses[size])}>{score}%</span>
       </div>
     </div>
   );
