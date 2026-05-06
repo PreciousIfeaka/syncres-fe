@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -22,7 +21,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const setAuth = useAuthStore((state) => state.setAuth);
-  
+
   const { register, handleSubmit, formState: { errors, isSubmitting }, setError } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
   });
@@ -36,7 +35,7 @@ export default function Login() {
       setAuth(response.data.token, response.data.user);
       navigate('/app/dashboard');
     } catch (err: any) {
-      setError('root', { 
+      setError('root', {
         message: err.response?.data?.message || 'Invalid email or password'
       });
     }
@@ -66,7 +65,7 @@ export default function Login() {
                 <p>Your session expired. Please log in again.</p>
               </div>
             )}
-            
+
             {errors.root && (
               <div className="mb-6 bg-red-50 border border-red-200 text-red-700 p-3 rounded-md flex items-start gap-2 text-sm">
                 <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
@@ -80,7 +79,7 @@ export default function Login() {
                 <Input id="email" type="email" placeholder="you@example.com" {...register('email')} />
                 {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { FileText, Plus, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -61,9 +61,9 @@ export default function Cvs() {
       ) : cvs && cvs.length > 0 ? (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {cvs.map(cv => (
-            <CvCard 
-              key={cv.id} 
-              cv={cv} 
+            <CvCard
+              key={cv.id}
+              cv={cv}
               onDelete={setCvToDelete}
               onUseInMatch={(cv) => navigate('/app/match', { state: { cvId: cv.id } })}
               onView={(cv) => setCvToViewId(cv.id)}
@@ -84,7 +84,7 @@ export default function Cvs() {
       )}
 
       <CvUploadModal isOpen={isUploadOpen} onClose={() => setIsUploadOpen(false)} />
-      
+
       <CvDetailsModal cvId={cvToViewId} onClose={() => setCvToViewId(null)} />
 
       {/* Delete Confirmation Dialog */}
@@ -96,14 +96,14 @@ export default function Cvs() {
               Delete CV
             </DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete <span className="font-medium text-blue-950">{cvToDelete?.originalFilename}</span>? 
+              Are you sure you want to delete <span className="font-medium text-blue-950">{cvToDelete?.originalFilename}</span>?
               This action cannot be undone. If this CV is used in tracked applications, it will still show there but cannot be used for new matches.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="sm:justify-between mt-4">
             <Button variant="ghost" onClick={() => setCvToDelete(null)}>Cancel</Button>
-            <Button 
-              variant="destructive" 
+            <Button
+              variant="destructive"
               onClick={() => cvToDelete && deleteMutation.mutate(cvToDelete.id)}
               disabled={deleteMutation.isPending}
             >

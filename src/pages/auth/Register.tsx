@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -21,7 +21,7 @@ type RegisterForm = z.infer<typeof registerSchema>;
 export default function Register() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const { register, handleSubmit, watch, formState: { errors, isSubmitting }, setError } = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),
   });
@@ -46,7 +46,7 @@ export default function Register() {
       await api.post('/auth/register', data);
       navigate(`/auth/verify-email?email=${encodeURIComponent(data.email)}`);
     } catch (err: any) {
-      setError('root', { 
+      setError('root', {
         message: err.response?.data?.message || 'Registration failed. Please try again.'
       });
     }
@@ -89,17 +89,17 @@ export default function Register() {
                 <Input id="email" type="email" placeholder="you@example.com" {...register('email')} />
                 {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <div className="relative">
-                  <Input 
-                    id="password" 
-                    type={showPassword ? 'text' : 'password'} 
-                    {...register('password')} 
+                  <Input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    {...register('password')}
                   />
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
                     onClick={() => setShowPassword(!showPassword)}
                   >
@@ -109,8 +109,8 @@ export default function Register() {
                 {password && (
                   <div className="mt-2 flex gap-1 h-1.5">
                     {[1, 2, 3, 4].map(level => (
-                      <div 
-                        key={level} 
+                      <div
+                        key={level}
                         className={`flex-1 rounded-full ${level <= score ? getStrengthColor() : 'bg-gray-200'}`}
                       />
                     ))}

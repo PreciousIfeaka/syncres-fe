@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { PublicNav } from '@/components/layout/PublicNav';
 import { CvInputStep } from '@/components/match/CvInputStep';
 import { JdInputStep } from '@/components/match/JdInputStep';
@@ -62,10 +62,10 @@ export default function Match() {
       <main className="container max-w-6xl mx-auto px-4 py-8">
         {step === 1 && <CvInputStep onSubmit={handleCvSubmit} />}
         {step === 2 && (
-          <JdInputStep 
-            onSubmit={handleJdSubmit} 
-            onBack={() => setStep(1)} 
-            isLoading={jobId !== null} 
+          <JdInputStep
+            onSubmit={handleJdSubmit}
+            onBack={() => setStep(1)}
+            isLoading={jobId !== null}
           />
         )}
         {step === 3 && <MatchProgress status={jobInfo?.status} />}

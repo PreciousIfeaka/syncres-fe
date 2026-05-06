@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { FileText, Trash2, Calendar, Search } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Cv } from '@/types';
-import { api } from '@/lib/axios';
-import { toast } from 'sonner';
 
 interface CvCardProps {
   cv: Cv;
@@ -17,9 +12,9 @@ interface CvCardProps {
 
 export function CvCard({ cv, onDelete, onUseInMatch, onView }: CvCardProps) {
   const isPdf = cv.originalFilename?.toLowerCase().endsWith('.pdf');
-  
+
   return (
-    <Card 
+    <Card
       className={`hover:border-violet-300 transition-colors shadow-sm group flex flex-col h-full ${onView ? 'cursor-pointer' : ''}`}
       onClick={(e) => {
         // Prevent click from firing if we click a button inside the card
@@ -45,16 +40,16 @@ export function CvCard({ cv, onDelete, onUseInMatch, onView }: CvCardProps) {
 
         <div className="mt-auto pt-4 flex gap-2">
           {onUseInMatch && (
-            <Button 
-              variant="secondary" 
+            <Button
+              variant="secondary"
               className="flex-1 text-xs h-8"
               onClick={() => onUseInMatch(cv)}
             >
               <Search className="w-3 h-3 mr-1.5" /> Use in Match
             </Button>
           )}
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             className="text-gray-400 hover:text-red-600 hover:bg-red-50 px-2 h-8"
             onClick={() => onDelete(cv)}
           >

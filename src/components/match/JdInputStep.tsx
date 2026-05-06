@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -58,8 +58,8 @@ export function JdInputStep({ onSubmit, onBack, isLoading }: JdInputStepProps) {
         </Tabs>
         <div className="mt-6 flex justify-between">
           <Button variant="ghost" onClick={onBack} disabled={isLoading}>Back</Button>
-          <Button 
-            onClick={handleSubmit} 
+          <Button
+            onClick={handleSubmit}
             disabled={!(isUrlValid || isPasteValid) || isLoading}
           >
             {isLoading ? 'Starting Match...' : 'Analyse Match'}

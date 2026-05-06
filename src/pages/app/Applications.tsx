@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { LayoutList, KanbanSquare, Search, Filter } from 'lucide-react';
 import { ApplicationKanban } from '@/components/applications/ApplicationKanban';
@@ -34,20 +34,20 @@ export default function Applications() {
           <h1 className="text-2xl font-semibold tracking-tight text-blue-950">Applications</h1>
           <p className="text-sm text-gray-500">Manage and track your job applications</p>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <div className="bg-gray-100 p-1 rounded-lg flex">
-            <Button 
-              variant={view === 'kanban' ? 'default' : 'ghost'} 
-              size="sm" 
+            <Button
+              variant={view === 'kanban' ? 'default' : 'ghost'}
+              size="sm"
               className={`h-8 px-2 ${view === 'kanban' ? 'bg-white text-blue-950 shadow-sm hover:bg-white' : 'text-gray-500'}`}
               onClick={() => setView('kanban')}
             >
               <KanbanSquare className="w-4 h-4 mr-2" /> Kanban
             </Button>
-            <Button 
-              variant={view === 'table' ? 'default' : 'ghost'} 
-              size="sm" 
+            <Button
+              variant={view === 'table' ? 'default' : 'ghost'}
+              size="sm"
               className={`h-8 px-2 ${view === 'table' ? 'bg-white text-blue-950 shadow-sm hover:bg-white' : 'text-gray-500'}`}
               onClick={() => setView('table')}
             >
@@ -60,8 +60,8 @@ export default function Applications() {
       <div className="flex items-center gap-4 shrink-0">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <Input 
-            placeholder="Search company or role..." 
+          <Input
+            placeholder="Search company or role..."
             className="pl-9"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -101,9 +101,9 @@ export default function Applications() {
           </div>
         ) : applications && applications.length > 0 ? (
           view === 'kanban' ? (
-            <ApplicationKanban 
-              applications={applications} 
-              onSelectApp={setSelectedApp} 
+            <ApplicationKanban
+              applications={applications}
+              onSelectApp={setSelectedApp}
             />
           ) : (
             <div className="border border-gray-200 rounded-lg bg-white overflow-hidden">
@@ -150,9 +150,9 @@ export default function Applications() {
         )}
       </div>
 
-      <ApplicationSlideOver 
-        application={selectedApp} 
-        onClose={() => setSelectedApp(null)} 
+      <ApplicationSlideOver
+        application={selectedApp}
+        onClose={() => setSelectedApp(null)}
       />
     </div>
   );

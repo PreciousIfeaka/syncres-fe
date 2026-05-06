@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDropzone, DropzoneOptions } from 'react-dropzone';
 import { UploadCloud, CheckCircle, File, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -47,7 +47,7 @@ export function FileDropzone({
       )}
     >
       <input {...getInputProps()} />
-      
+
       {loading ? (
         <div className="flex flex-col items-center text-violet-600">
           <Loader2 className="w-10 h-10 animate-spin mb-2" />

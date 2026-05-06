@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { JobStatus } from '@/types';
@@ -13,8 +13,8 @@ export function MatchProgress({ status }: MatchProgressProps) {
   const [message, setMessage] = useState('Analysing your CV...');
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    
+    let interval: ReturnType<typeof setInterval>;
+
     if (status === 'PENDING') {
       setProgress(20);
       setMessage('Analysing your CV...');
@@ -25,7 +25,7 @@ export function MatchProgress({ status }: MatchProgressProps) {
         return 80;
       });
       setMessage('Scoring match and extracting skills...');
-      
+
       interval = setInterval(() => {
         setProgress((prev) => (prev < 85 ? prev + 2 : prev));
       }, 1000);

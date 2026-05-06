@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -50,8 +50,8 @@ export function CvInputStep({ onSubmit }: CvInputStepProps) {
           </TabsContent>
         </Tabs>
         <div className="mt-6 flex justify-end">
-          <Button 
-            onClick={handleSubmit} 
+          <Button
+            onClick={handleSubmit}
             disabled={!(isUploadValid || isPasteValid)}
           >
             Continue to Job Description

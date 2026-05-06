@@ -21,7 +21,7 @@ export default function VerifyEmail() {
   }, [email, navigate]);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setTimeout>;
     if (countdown > 0) {
       timer = setInterval(() => setCountdown(c => c - 1), 1000);
     }

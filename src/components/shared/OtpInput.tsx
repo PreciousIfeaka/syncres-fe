@@ -1,4 +1,4 @@
-import React, { useState, useRef, KeyboardEvent, ClipboardEvent } from 'react';
+import { useState, useEffect, useRef, KeyboardEvent, ClipboardEvent } from 'react';
 import { cn } from '@/lib/utils';
 
 interface OtpInputProps {
@@ -12,7 +12,7 @@ export function OtpInput({ value, onChange, error }: OtpInputProps) {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   // Initialize or update from external value
-  React.useEffect(() => {
+  useEffect(() => {
     if (value && value.length <= 6) {
       const newOtp = value.split('').concat(Array(6 - value.length).fill(''));
       setOtp(newOtp);
@@ -64,7 +64,7 @@ export function OtpInput({ value, onChange, error }: OtpInputProps) {
       {otp.map((digit, index) => (
         <input
           key={index}
-          ref={(el) => (inputRefs.current[index] = el)}
+          ref={(el) => { inputRefs.current[index] = el; }}
           type="text"
           inputMode="numeric"
           maxLength={1}
