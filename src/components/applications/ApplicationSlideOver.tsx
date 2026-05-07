@@ -89,7 +89,7 @@ export function ApplicationSlideOver({ application, onClose }: ApplicationSlideO
 
   const addNoteMutation = useMutation({
     mutationFn: async () => {
-      await api.post(`/applications/${application?.id}/notes`, { content: newNote, type: noteType });
+      await api.post(`/applications/${application?.id}/notes`, { content: newNote, noteType });
     },
     onSuccess: () => {
       setNewNote('');
