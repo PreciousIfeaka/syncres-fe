@@ -59,10 +59,10 @@ export function ApplicationKanban({ applications, onSelectApp }: ApplicationKanb
                         {getDaysAgo(app.appliedAt || app.createdAt)}
                       </div>
                       <div className={`text-xs font-semibold px-2 py-0.5 rounded-full ${app.matchScore >= 80 ? 'bg-emerald-100 text-emerald-700' :
-                          app.matchScore >= 65 ? 'bg-amber-100 text-amber-700' :
-                            'bg-red-100 text-red-700'
+                        app.matchScore >= 65 ? 'bg-amber-100 text-amber-700' :
+                          'bg-red-100 text-red-700'
                         }`}>
-                        {app.matchScore}% Match
+                        {app.matchScore ?? 0}% Match
                       </div>
                     </div>
                   </CardContent>

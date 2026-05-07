@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { LayoutList, KanbanSquare, Search, Filter } from 'lucide-react';
 import { ApplicationKanban } from '@/components/applications/ApplicationKanban';
 import { ApplicationSlideOver } from '@/components/applications/ApplicationSlideOver';
+import { CreateApplicationModal } from '@/components/applications/CreateApplicationModal';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -15,6 +16,7 @@ export default function Applications() {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [selectedApp, setSelectedApp] = useState<Application | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const { data: applications, isLoading } = useQuery<Application[]>({
     queryKey: ['applications', { search, status: statusFilter }],
@@ -54,6 +56,9 @@ export default function Applications() {
               <LayoutList className="w-4 h-4 mr-2" /> Table
             </Button>
           </div>
+          <Button onClick={() => setIsCreateModalOpen(true)} size="sm" className="h-10 ml-2">
+            Create Application
+          </Button>
         </div>
       </div>
 
@@ -153,6 +158,11 @@ export default function Applications() {
       <ApplicationSlideOver
         application={selectedApp}
         onClose={() => setSelectedApp(null)}
+      />
+
+      <CreateApplicationModal 
+        isOpen={isCreateModalOpen} 
+        onClose={() => setIsCreateModalOpen(false)} 
       />
     </div>
   );
