@@ -129,7 +129,7 @@ export default function Applications() {
                       <td className="px-6 py-4 text-gray-600">{app.roleTitle}</td>
                       <td className="px-6 py-4">
                         <span className={`font-medium ${app.matchScore >= 80 ? 'text-emerald-600' : app.matchScore >= 65 ? 'text-amber-600' : 'text-red-600'}`}>
-                          {app.matchScore}%
+                          {app.matchScore ?? 0}%
                         </span>
                       </td>
                       <td className="px-6 py-4 text-gray-600">

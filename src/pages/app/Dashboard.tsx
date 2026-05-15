@@ -89,7 +89,7 @@ export default function Dashboard() {
               <Target className="h-4 w-4 text-gray-400" />
             </div>
             {statsLoading ? <Skeleton className="h-8 w-16" /> : (
-              <div className="text-2xl font-bold">{stats?.averageMatchScore?.toFixed(0) || 0}%</div>
+              <div className="text-2xl font-bold">{stats?.averageMatchScore?.toFixed(0) ?? 0}%</div>
             )}
           </CardContent>
         </Card>
@@ -146,7 +146,7 @@ export default function Dashboard() {
                         <TableCell className="text-gray-600">{app.roleTitle}</TableCell>
                         <TableCell>
                           <div className={`font-medium ${app.matchScore >= 80 ? 'text-emerald-600' : app.matchScore >= 65 ? 'text-amber-600' : 'text-red-600'}`}>
-                            {app.matchScore}%
+                            {app.matchScore ?? 0}%
                           </div>
                         </TableCell>
                         <TableCell>{getStatusBadge(app.status)}</TableCell>
